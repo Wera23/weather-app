@@ -1,23 +1,34 @@
-import React from 'react';
-import {Card, CardHeader} from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
-import classesLogin from './Login.css'
+import React from "react";
 
-const login = (props) =>  (
-    <div className={classesLogin.loginOverlay} >
-        <Card className={classesLogin.card}>
-<CardHeader className={classesLogin.header}> { props.option } </CardHeader>
+import { Button, TextField, Card, CardContent, Typography} from '@material-ui/core/';
+import classesLogin from "./Login.css";
 
-            <div className={classesLogin.input}>
-            <TextField hintText="Nazwa użytkownika" />
-            <TextField hintText="Podaj hasło"
-            floatingLabelText="Password"
-            type="password"
-            />
-            </div>
-        </Card>
-    </div>
-)
+const login = props => (
+  <div className={classesLogin.loginOverlay}>
+    
+    <Card style={{ backgroundColor: "#ECEFF1" }} className={classesLogin.card}>
+    <CardContent>
+      <Typography className={classesLogin.header}> {props.option} </Typography>
 
+      <div className={classesLogin.input}>
+        <TextField hintText="Nazwa użytkownika" color="secondary" />
+        <TextField
+          hintText="Podaj hasło"
+          floatingLabelText="Password"
+          type="password"
+          color="secondary"
+        />
+      </div>
+
+      <div className={classesLogin.button}>
+
+      <Button variant="contained" color="primary" type="onSubmit"> {props.option} </Button>
+
+
+      </div>
+      </CardContent>
+    </Card>
+  </div>
+);
 
 export default login;
