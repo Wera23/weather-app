@@ -7,6 +7,7 @@
     "@material/react-button": "^0.15.0",
     "@material/react-card": "^0.15.0",
     "bootstrap": "^3.4.1",
+    "eject": "0.0.4",
     "material-ui": "^0.20.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
