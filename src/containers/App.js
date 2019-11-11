@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
+import '../containers/App.css';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
-import Title from './Weather/Title';
-import Form from './Weather/Form';
-import Score from './Weather/Score';
+import Form from '../components/Weather/Form';
+import Score from '../components/Weather/Score';
+import Cocpit from '../components/Cocpit/Cocpit'
 
 
 const API_KEY = "0083b6930a5af544a07904eba6e476c6";
@@ -60,7 +59,8 @@ render () {
   return (
     <div className="appOverlay">
       <MuiThemeProvider>
-      <Title />
+      <Cocpit title={this.props.appTitle} 
+      subtitle={this.props.appSubtitle} />
 
 
       <div className="weatherContent">
