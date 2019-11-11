@@ -5,7 +5,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Form from '../components/Weather/Form';
 import Score from '../components/Weather/Score';
-import Cocpit from '../components/Cocpit/Cocpit'
+import Cocpit from '../components/Cocpit/Cocpit';
+import Login from '../components/Login/Login';
+import styles from '../containers/App.css'
 
 
 const API_KEY = "0083b6930a5af544a07904eba6e476c6";
@@ -57,13 +59,16 @@ getWeather = async (e) => {
 render () {
   
   return (
-    <div className="appOverlay">
+    <div className={styles.App} >
       <MuiThemeProvider>
       <Cocpit title={this.props.appTitle} 
       subtitle={this.props.appSubtitle} />
 
+      <Login option={this.props.option}/>
 
-      <div className="weatherContent">
+
+      <div className={styles.appOverlay}>
+       
       <Form getWeather={this.getWeather}/>
       <Score
       temperature={this.state.temperature}

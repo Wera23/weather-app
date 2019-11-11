@@ -1,7 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'roboto';
+    border: 2px solid green;
+    height: 100vh;
+}
+
 .appOverlay{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 1px solid red;
+    width: 60%;
+    padding: 3em;
 }
