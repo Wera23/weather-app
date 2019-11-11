@@ -7,7 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Title from './Weather/Title';
 import Form from './Weather/Form';
 import Score from './Weather/Score';
-import FieldScore from './Weather/FieldScore';
 
 
 const API_KEY = "0083b6930a5af544a07904eba6e476c6";
@@ -73,7 +72,7 @@ render () {
       humidity={this.state.humidity}
       description={this.state.description}
       error={this.state.error}
-      /><FieldScore />
+      />
       </div>
       </MuiThemeProvider>
     </div>
