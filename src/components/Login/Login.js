@@ -13,10 +13,10 @@ const login = props => (
       <div className={classesLogin.input}>
         <TextField hintText="Nazwa użytkownika" color="secondary" />
         <TextField
-          hintText="Podaj hasło"
+          label="Podaj hasło"
           floatingLabelText="Password"
           type="password"
-          color="secondary"
+          color="secondary" 
         />
       </div>
 
