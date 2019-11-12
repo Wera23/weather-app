@@ -120,6 +120,9 @@ class LoginPage extends React.Component {
                 >
                   Login
                 </Button>
+
+
+                
               </div>
               {error && <div className={classesLogin.error}>{error}</div>}
             </form>

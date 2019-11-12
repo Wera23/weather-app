@@ -80,7 +80,9 @@ class App extends React.Component {
 
           
 
-    {/* <Login option={this.props.option} /> */}
+    {/* <Login option={this.props.option} /> 
+
+
 
           <div className={styles.weatherOverlay}>
             <Form getWeather={this.getWeather} />
@@ -93,6 +95,8 @@ class App extends React.Component {
               error={this.state.error}
             />
           </div> 
+
+          */}
           <Router>
             <div>
               <PrivateRoute exact path="/" component={WeatherPage} />

@@ -2,7 +2,8 @@
 
 *{
     box-sizing: border-box;
-    font-family: 'Alegreya Sans', sans-serif;
+    /*font-family: 'Alegreya Sans', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
 }
 
 .App{
