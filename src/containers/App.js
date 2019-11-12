@@ -38,13 +38,11 @@ class App extends React.Component {
   };
 
   getWeather = async e => {
-   const city = e.target.elements.city.value;
+    const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     e.preventDefault();
     const api_call = await fetch(
-      //`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
-      `api.openweathermap.org/data/2.5/forecast?lat=35&lon=139`
-      
+      `http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
 
     const data = await api_call.json();
@@ -52,13 +50,14 @@ class App extends React.Component {
     if (city && country) {
       console.log(data);
       this.setState({
-        temperature: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
+        temperature: data.list[0].main.temp,
+        city: data.city.name,
+        country: data.city.country,
+        humidity: data.list[0].main.humidity,
+        description: data.list[0].weather[0].description,
         error: ""
       });
+      console.log(data.city.name);
     } else {
       this.setState({
         temperature: undefined,
@@ -77,10 +76,6 @@ class App extends React.Component {
         <MuiThemeProvider theme={theme}>
           <Cocpit title={this.props.appTitle} />
 
-          {/* <Login option={this.props.option} /> 
-
-
-
           <div className={styles.weatherOverlay}>
             <Form getWeather={this.getWeather} />
             <Score
@@ -91,9 +86,9 @@ class App extends React.Component {
               description={this.state.description}
               error={this.state.error}
             />
-          </div> 
 
-          */}
+          </div>
+
           <Router>
             <div>
               <PrivateRoute exact path="/" component={WeatherPage} />

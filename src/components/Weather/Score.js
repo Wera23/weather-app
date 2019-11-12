@@ -8,11 +8,12 @@ const score = props => (
       <div className={classesWeather.score}>
         <Card className={classesWeather.card}>
           <CardContent>
-           
-              <Typography className={classesWeather.header} variant="h5">Friday</Typography>
-           
+            <Typography className={classesWeather.header} variant="h5">
+              Friday
+            </Typography>
+
             {props.temperature && (
-              <Typography variant="h3" className={classesWeather.temp}> 
+              <Typography variant="h3" className={classesWeather.temp}>
                 {props.temperature} &#176;
               </Typography>
             )}
@@ -23,7 +24,7 @@ const score = props => (
             )}
             {props.description && (
               <Typography className={classesWeather.cardText}>
-               Wind:  {props.description}
+                Wind: {props.description}
               </Typography>
             )}
             {props.error && (

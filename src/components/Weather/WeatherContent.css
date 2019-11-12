@@ -2,6 +2,10 @@
     display: flex;           
 }
 
+.score3day{
+    display: flex;
+}
+
 .header{
     text-align: center;
     text-transform: uppercase;

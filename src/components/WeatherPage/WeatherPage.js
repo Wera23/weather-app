@@ -16,16 +16,11 @@ class WeatherPage extends React.Component {
     this.state = {
       user: {},
       users: [],
-      temperatureAdmin: 37,
-      cityAdmin: "Katowice",
-      countryAdmin: "Poland",
-      humidityAdmin: "70%",
-      descriptionAdmin: "80km/h",
-      cityUser: "Warszawa",
-      temperatureUser: 12,
-      countryUser: "Poland",
-      humidityUser: "10%",
-      descriptionUser: "120km/h"
+      temperature: 37,
+      city: "Gdynia",
+      country: "Poland",
+      humidity: "70%",
+      description: "80km/h",
     };
   }
 
@@ -41,41 +36,41 @@ class WeatherPage extends React.Component {
     const { user } = this.state;
     console.log(this.state.city);
     return (
-      <div class={stylesWeather.cardOverlay}>
+      <div className={stylesWeather.cardOverlay}>
         <h1 className={stylesWeather.header}>Hi {user.firstName}!</h1>
         <p className={stylesWeather.subheader}>
           Your forecast for the next three days
         </p>
 
         {user.isAdmin && (
-          <div class={stylesWeather.scoreBoard}>
+          <div className={stylesWeather.scoreBoard}>
             <div className={stylesWeather.scoreField}>
               <Score
-                temperature={this.state.temperatureAdmin}
-                city={this.state.cityAdmin}
-                country={this.state.countryAdmin}
-                humidity={this.state.humidityAdmin}
-                description={this.state.descriptionAdmin}
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                humidity={this.state.humidity}
+                description={this.state.description}
               />
             </div>
 
             <div className={stylesWeather.scoreField}>
             <Score
-                temperature={this.state.temperatureAdmin}
-                city={this.state.cityAdmin}
-                country={this.state.countryAdmin}
-                humidity={this.state.humidityAdmin}
-                description={this.state.descriptionAdmin}
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                humidity={this.state.humidity}
+                description={this.state.description}
               />
             </div>
 
             <div className={stylesWeather.scoreField}>
             <Score
-                temperature={this.state.temperatureAdmin}
-                city={this.state.cityAdmin}
-                country={this.state.countryAdmin}
-                humidity={this.state.humidityAdmin}
-                description={this.state.descriptionAdmin}
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                humidity={this.state.humidity}
+                description={this.state.description}
               />
             </div>
           </div>
@@ -84,34 +79,34 @@ class WeatherPage extends React.Component {
         
 {user.isAdmin === false && (
   <div>
-     <div class={stylesWeather.scoreBoard}>
+     <div className={stylesWeather.scoreBoard}>
             <div className={stylesWeather.scoreField}>
-              <Score
-                temperature={this.state.temperatureUser}
-                city={this.state.cityUser}
-                country={this.state.countryUser}
-                humidity={this.state.humidityUser}
-                description={this.state.descriptionUser}
+            <Score
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                humidity={this.state.humidity}
+                description={this.state.description}
               />
             </div>
 
             <div className={stylesWeather.scoreField}>
             <Score
-                temperature={this.state.temperatureUser}
-                city={this.state.cityUser}
-                country={this.state.countryUser}
-                humidity={this.state.humidityUser}
-                description={this.state.descriptionUser}
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                humidity={this.state.humidity}
+                description={this.state.description}
               />
             </div>
 
             <div className={stylesWeather.scoreField}>
             <Score
-                temperature={this.state.temperatureUser}
-                city={this.state.cityUser}
-                country={this.state.countryUser}
-                humidity={this.state.humidityUser}
-                description={this.state.descriptionUser}
+                temperature={this.state.temperature}
+                city={this.state.city}
+                country={this.state.country}
+                humidity={this.state.humidity}
+                description={this.state.description}
               />
             </div>
           </div>
