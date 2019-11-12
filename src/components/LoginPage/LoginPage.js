@@ -73,7 +73,7 @@ class LoginPage extends React.Component {
             <form name="form" onSubmit={this.handleSubmit}>
               <div
                 className={
-                  "form-group" + (submitted && !username ? " has-error" : "")
+                  (classesLogin.input) + (submitted && !username ? " has-error" : "")
                 }
               >
                 <TextField
@@ -88,16 +88,15 @@ class LoginPage extends React.Component {
                 />
 
                 {submitted && !username && (
-                  <div className="help-block">Username is required</div>
+                  <div className={classesLogin.error}>Username is required</div>
                 )}
               </div>
 
               <div
                 className={
-                  "form-group" + (submitted && !password ? " has-error" : "")
+                    (classesLogin.input) + (submitted && !password ? " has-error" : "")
                 }
               >
-               
                 <TextField
                   label="Password"
                   floatingLabelText="Password"
@@ -109,19 +108,20 @@ class LoginPage extends React.Component {
                 />
 
                 {submitted && !password && (
-                  <div className="help-block">Password is required</div>
+                  <div className={classesLogin.error}>Password is required</div>
                 )}
               </div>
-              <div >
-
-
-
-                <Button variant="contained" disabled={loading} color="primary" type="onSubmit"> Login </Button>
-
-
-
+              <div className={classesLogin.button}>
+                <Button
+                  variant="contained"
+                  disabled={loading}
+                  color="secondary"
+                  type="onSubmit"
+                >
+                  Login
+                </Button>
               </div>
-              {error && <div className={"alert alert-danger"}>{error}</div>}
+              {error && <div className={classesLogin.error}>{error}</div>}
             </form>
           </CardContent>
         </Card>

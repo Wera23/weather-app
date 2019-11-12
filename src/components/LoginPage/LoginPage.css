@@ -24,8 +24,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid red;
-    color: green
 }
 
 .button{
@@ -33,4 +31,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.error{
+color: red;
+font-size: 12px;
 }
