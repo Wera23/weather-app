@@ -2,24 +2,30 @@ import React from "react";
 import "../containers/App.css";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from "@material-ui/core/styles";
+import { HomePage } from "./HomePage";
 import Form from "../components/Weather/Form";
 import Score from "../components/Weather/Score";
 import Cocpit from "../components/Cocpit/Cocpit";
+
 import Login from "../components/Login/Login";
 import styles from "../containers/App.css";
+import { LoginPage } from "./LoginPage";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { PrivateRoute } from '../components/PrivateRoute';
 
 const API_KEY = "0083b6930a5af544a07904eba6e476c6";
 
 const theme = createMuiTheme({
   palette: {
-    primary: {     
-      main: '#ff4400',      
+    primary: {
+      main: "#ff4400"
     },
     secondary: {
-      main: '#0044ff',
-    },
-  },
+      main: "#0044ff"
+    }
+  }
 });
 
 class App extends React.Component {
@@ -68,10 +74,13 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <MuiThemeProvider theme={theme}>
-          <Cocpit
+          {/* <Cocpit
             title={this.props.appTitle}
             subtitle={this.props.appSubtitle}
           />
+
+          <HomePage />
+          <LoginPage />
 
           <Login option={this.props.option} />
 
@@ -85,7 +94,13 @@ class App extends React.Component {
               description={this.state.description}
               error={this.state.error}
             />
-          </div>
+          </div> */}
+          <Router>
+            <div>
+              <PrivateRoute exact path="/" component={HomePage} />
+              <Route path="/login" component={LoginPage} />
+            </div>
+          </Router>
         </MuiThemeProvider>
       </div>
     );
