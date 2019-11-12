@@ -1,16 +1,28 @@
+.header{
+    font-weight: 300;
+    font-family: 'Lato', serif;
+}
+
+.subheader
+{
+    padding: 10px;
+    margin-bottom: 50px;
+    font-weight: 400;
+    font-family: 'Lato', serif;
+
+}
+
 .cardOverlay{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid white;
 }
 
 .scoreBoard{
     display: flex;
     align-content: center;
     justify-content: center;
-    flex-direction: column;
 }
 
 
@@ -26,4 +38,8 @@
 .link{
     color: white;
     text-decoration: none;
+}
+
+.scoreField{
+    margin: 20px;
 }

@@ -1,12 +1,18 @@
-import React from 'react';
-import classes from './Cocpit.css'
+import React from "react";
+import classes from "./Cocpit.css";
+import { AppBar, Typography } from "@material-ui/core/";
 
-const cocpit = (props) =>  (
-        <div className={classes.Cocpit} >
-         <h1> {props.title} </h1>
-         <p>{props.subtitle}</p>    
-    </div>
-    )
+const cocpit = props => (
+  <AppBar position="static" className={classes.AppBar} color="primary">
+    
+      <Typography color="inherit">
+          <div className={classes.toolbar} >
+        <h1 className={classes.header} > {props.title} </h1>
+        
+        </div>
+      </Typography>
 
+  </AppBar>
+);
 
 export default cocpit;

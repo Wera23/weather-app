@@ -23,7 +23,7 @@ const theme = createMuiTheme({
       main: "#ff4400"
     },
     secondary: {
-      main: "#0044ff"
+      main: "#1de9b6"
     }
   }
 });
@@ -74,9 +74,15 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <MuiThemeProvider theme={theme}>
+
+          
+
+
+
+
           <Cocpit
             title={this.props.appTitle}
-            subtitle={this.props.appSubtitle}/>
+            />
 
           
 

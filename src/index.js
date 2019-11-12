@@ -6,6 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { configureFakeBackend } from './_helpers';
 configureFakeBackend();
 
-ReactDOM.render(<App appTitle="Prognoza pogody" appSubtitle="Sprawdź pogodę" option="Zaloguj się"/>, document.getElementById('root'));
+ReactDOM.render(<App appTitle="Weather forecast"  option="Zaloguj się"/>, document.getElementById('root'));
 
 serviceWorker.unregister();

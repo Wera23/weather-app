@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 import { userService } from "../../_services";
 
-import { Button, Card, Typography, CardContent } from "@material-ui/core/";
+import { Button } from "@material-ui/core/";
 
 import Score from "../Weather/Score";
 
-import stylesWeather from './WeatherPage.css'
+import stylesWeather from "./WeatherPage.css";
 
 class WeatherPage extends React.Component {
   constructor(props) {
@@ -36,28 +36,54 @@ class WeatherPage extends React.Component {
     const { user } = this.state;
     console.log(this.state.city);
     return (
-      <div class={stylesWeather.cardOverlay} >
-      
-      
-          <h1>Hi {user.firstName}!</h1>
+      <div class={stylesWeather.cardOverlay}>
+        <h1 className={stylesWeather.header}>Hi {user.firstName}!</h1>
+        <p className={stylesWeather.subheader}>Your forecast for the next three days</p>
 
-
-          {user.isAdmin && (
-            <div class={stylesWeather.scoreBoard}>
-              <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
+        {user.isAdmin && (
+          <div class={stylesWeather.scoreBoard}>
+            <div className={stylesWeather.scoreField}>
+            <Score 
+              temperature={this.state.temperature}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+            />
             </div>
-          )}
+
+
+            <div className={stylesWeather.scoreField}>
+            <Score            
+              temperature={this.state.temperature}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+            />
+
+            </div>
+
+            <div className={stylesWeather.scoreField}>
+
+            <Score
+            
+              temperature={this.state.temperature}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+            />
+            </div>
+          </div>
+        )}
 
         <p>
           <div class={stylesWeather.button}>
-            <Button  variant="contained" color="secondary" type="onSubmit">
-              <Link class={stylesWeather.link} to="/login">Logout</Link>
+            <Button variant="contained" color="secondary" type="onSubmit">
+              <Link class={stylesWeather.link} to="/login">
+                Logout
+              </Link>
             </Button>
           </div>
         </p>

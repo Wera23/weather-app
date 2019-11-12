@@ -1,10 +1,22 @@
-.Cocpit {
+.toolbar {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
-    font-weight: 600;
-    font-size: 1em;
-    color: white;
+    
 }    
+
+.header{
+    font-family: 'Lato', serif;
+    font-size: 2em;
+    color: white;
+    font-weight: 200;
+}
+
+.AppBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
