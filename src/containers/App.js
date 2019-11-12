@@ -11,9 +11,9 @@ import Cocpit from "../components/Cocpit/Cocpit";
 import Login from "../components/Login/Login";
 import styles from "../containers/App.css";
 import { LoginPage } from "../components/LoginPage";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { PrivateRoute } from '../components/PrivateRoute';
+import { PrivateRoute } from "../components/PrivateRoute";
 
 const API_KEY = "0083b6930a5af544a07904eba6e476c6";
 
@@ -74,19 +74,9 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <MuiThemeProvider theme={theme}>
+          <Cocpit title={this.props.appTitle} />
 
-          
-
-
-
-
-          <Cocpit
-            title={this.props.appTitle}
-            />
-
-          
-
-    {/* <Login option={this.props.option} /> 
+          {/* <Login option={this.props.option} /> 
 
 
 

@@ -2,8 +2,11 @@ import React from "react";
 import classes from "./Cocpit.css";
 import { AppBar, Typography } from "@material-ui/core/";
 
+
+
 const cocpit = props => (
-  <AppBar position="static" className={classes.AppBar} color="primary">
+    
+  <AppBar position="static" className={classes.AppBar} color="secondary">
     
       <Typography color="inherit">
           <div className={classes.toolbar} >
