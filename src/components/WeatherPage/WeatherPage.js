@@ -16,11 +16,16 @@ class WeatherPage extends React.Component {
     this.state = {
       user: {},
       users: [],
-      temperature: 37,
-      city: "Katowice",
-      country: "Poland",
-      humidity: "70%",
-      description: "80km/h"
+      temperatureAdmin: 37,
+      cityAdmin: "Katowice",
+      countryAdmin: "Poland",
+      humidityAdmin: "70%",
+      descriptionAdmin: "80km/h",
+      cityUser: "Warszawa",
+      temperatureUser: 12,
+      countryUser: "Poland",
+      humidityUser: "10%",
+      descriptionUser: "120km/h"
     };
   }
 
@@ -38,45 +43,83 @@ class WeatherPage extends React.Component {
     return (
       <div class={stylesWeather.cardOverlay}>
         <h1 className={stylesWeather.header}>Hi {user.firstName}!</h1>
-        <p className={stylesWeather.subheader}>Your forecast for the next three days</p>
+        <p className={stylesWeather.subheader}>
+          Your forecast for the next three days
+        </p>
 
         {user.isAdmin && (
           <div class={stylesWeather.scoreBoard}>
             <div className={stylesWeather.scoreField}>
-            <Score 
-              temperature={this.state.temperature}
-              city={this.state.city}
-              country={this.state.country}
-              humidity={this.state.humidity}
-              description={this.state.description}
-            />
-            </div>
-
-
-            <div className={stylesWeather.scoreField}>
-            <Score            
-              temperature={this.state.temperature}
-              city={this.state.city}
-              country={this.state.country}
-              humidity={this.state.humidity}
-              description={this.state.description}
-            />
-
+              <Score
+                temperature={this.state.temperatureAdmin}
+                city={this.state.cityAdmin}
+                country={this.state.countryAdmin}
+                humidity={this.state.humidityAdmin}
+                description={this.state.descriptionAdmin}
+              />
             </div>
 
             <div className={stylesWeather.scoreField}>
-
             <Score
-            
-              temperature={this.state.temperature}
-              city={this.state.city}
-              country={this.state.country}
-              humidity={this.state.humidity}
-              description={this.state.description}
-            />
+                temperature={this.state.temperatureAdmin}
+                city={this.state.cityAdmin}
+                country={this.state.countryAdmin}
+                humidity={this.state.humidityAdmin}
+                description={this.state.descriptionAdmin}
+              />
+            </div>
+
+            <div className={stylesWeather.scoreField}>
+            <Score
+                temperature={this.state.temperatureAdmin}
+                city={this.state.cityAdmin}
+                country={this.state.countryAdmin}
+                humidity={this.state.humidityAdmin}
+                description={this.state.descriptionAdmin}
+              />
             </div>
           </div>
         )}
+
+        
+{user.isAdmin === false && (
+  <div>
+     <div class={stylesWeather.scoreBoard}>
+            <div className={stylesWeather.scoreField}>
+              <Score
+                temperature={this.state.temperatureUser}
+                city={this.state.cityUser}
+                country={this.state.countryUser}
+                humidity={this.state.humidityUser}
+                description={this.state.descriptionUser}
+              />
+            </div>
+
+            <div className={stylesWeather.scoreField}>
+            <Score
+                temperature={this.state.temperatureUser}
+                city={this.state.cityUser}
+                country={this.state.countryUser}
+                humidity={this.state.humidityUser}
+                description={this.state.descriptionUser}
+              />
+            </div>
+
+            <div className={stylesWeather.scoreField}>
+            <Score
+                temperature={this.state.temperatureUser}
+                city={this.state.cityUser}
+                country={this.state.countryUser}
+                humidity={this.state.humidityUser}
+                description={this.state.descriptionUser}
+              />
+            </div>
+          </div>
+  </div>
+)}
+        
+
+
 
         <p>
           <div class={stylesWeather.button}>

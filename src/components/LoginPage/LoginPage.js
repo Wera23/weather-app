@@ -62,7 +62,7 @@ class LoginPage extends React.Component {
     return (
       <div className={classesLogin.loginOverlay}>
         <Card
-          style={{ backgroundColor: "#ECEFF1" }}
+          style={{ backgroundColor: "#fafafa" }}
           className={classesLogin.card}
         >
           <CardContent>
@@ -122,7 +122,7 @@ class LoginPage extends React.Component {
                 </Button>
 
 
-                
+
               </div>
               {error && <div className={classesLogin.error}>{error}</div>}
             </form>

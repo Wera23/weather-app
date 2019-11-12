@@ -8,7 +8,6 @@ import Form from "../components/Weather/Form";
 import Score from "../components/Weather/Score";
 import Cocpit from "../components/Cocpit/Cocpit";
 
-import Login from "../components/Login/Login";
 import styles from "../containers/App.css";
 import { LoginPage } from "../components/LoginPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -39,11 +38,13 @@ class App extends React.Component {
   };
 
   getWeather = async e => {
-    const city = e.target.elements.city.value;
+   const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     e.preventDefault();
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      //`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      `api.openweathermap.org/data/2.5/forecast?lat=35&lon=139`
+      
     );
 
     const data = await api_call.json();
