@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import { userService, getWeather } from "../../_services";
-
 import { Button } from "@material-ui/core/";
-
+import { userService } from "../../_services";
 import Score from "../Weather/Score";
-
 import stylesWeather from "./WeatherPage.css";
+import moment from 'moment';
 
 class WeatherPage extends React.Component {
   constructor(props) {
@@ -72,12 +69,14 @@ class WeatherPage extends React.Component {
               return (
                 <div className={stylesWeather.scoreField}>
                   <Score
-                    day={item.dt_txt}
+                    day={moment(item.dt_txt).format('dddd')}
+                    date={moment(item.dt_txt).format('Do YYYY')}
                     temperature={item.main.temp}
                     city={user.city}
                     country={user.country}
                     humidity={item.main.humidity}
-                    description={item.main.description}
+                    description={item.weather[0].description}
+                    icon={item.weather[0].icon}
                   />
                 </div>
               );

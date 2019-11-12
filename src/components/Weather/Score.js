@@ -11,7 +11,11 @@ const score = props => (
             <Typography className={classesWeather.header} variant="h5">
               {props.day}
             </Typography>
-
+            {props.date && (
+              <Typography className={classesWeather.cardText}>
+                {props.date}
+              </Typography>
+            )}
             {props.temperature && (
               <Typography variant="h3" className={classesWeather.temp}>
                 {props.temperature} &#176;
@@ -33,6 +37,10 @@ const score = props => (
                 {props.error}{" "}
               </Typography>
             )}
+
+            {props.icon &&
+              <img src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} alt={props.description} />
+            }
           </CardContent>
         </Card>
       </div>
