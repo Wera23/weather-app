@@ -9,7 +9,7 @@ const score = props => (
         <Card className={classesWeather.card}>
           <CardContent>
             <Typography className={classesWeather.header} variant="h5">
-              Friday
+              {props.day}
             </Typography>
 
             {props.temperature && (

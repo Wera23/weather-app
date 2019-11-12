@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { userService } from "../../_services";
+import { userService, getWeather } from "../../_services";
 
 import { Button } from "@material-ui/core/";
 
@@ -16,25 +16,49 @@ class WeatherPage extends React.Component {
     this.state = {
       user: {},
       users: [],
-      temperature: 37,
-      city: "Gdynia",
-      country: "Poland",
-      humidity: "70%",
-      description: "80km/h",
+      temperature: 0,
+      humidity: "",
+      description: "",
+      forecast: {},
+      daysForecast: [],
+      loadingData: false
     };
   }
 
   componentDidMount() {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    const city = userData.city;
+    const country = userData.country;
+    const API_KEY = "0083b6930a5af544a07904eba6e476c6";
+
+    this.setState({ loadingData: true });
+    fetch(
+      `http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=metric`
+    )
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          forecast: data,
+          daysForecast: data.list.filter((element, i) => i % 8 === 8 - 1),
+          loadingData: false
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loadingData: false
+        });
+      });
+
     this.setState({
-      user: JSON.parse(localStorage.getItem("user")),
+      user: userData,
       users: { loading: true }
     });
     userService.getAll().then(users => this.setState({ users }));
   }
 
   render() {
-    const { user } = this.state;
-    console.log(this.state.city);
+    const { user, loadingData, forecast, daysForecast } = this.state;
     return (
       <div className={stylesWeather.cardOverlay}>
         <h1 className={stylesWeather.header}>Hi {user.firstName}!</h1>
@@ -42,79 +66,60 @@ class WeatherPage extends React.Component {
           Your forecast for the next three days
         </p>
 
-        {user.isAdmin && (
+        {user.isAdmin && !loadingData && (
           <div className={stylesWeather.scoreBoard}>
-            <div className={stylesWeather.scoreField}>
-              <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
-            </div>
-
-            <div className={stylesWeather.scoreField}>
-            <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
-            </div>
-
-            <div className={stylesWeather.scoreField}>
-            <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
-            </div>
+            {daysForecast.map(item => {
+              return (
+                <div className={stylesWeather.scoreField}>
+                  <Score
+                    day={item.dt_txt}
+                    temperature={item.main.temp}
+                    city={user.city}
+                    country={user.country}
+                    humidity={item.main.humidity}
+                    description={item.main.description}
+                  />
+                </div>
+              );
+            })}
           </div>
         )}
 
-        
-{user.isAdmin === false && (
-  <div>
-     <div className={stylesWeather.scoreBoard}>
-            <div className={stylesWeather.scoreField}>
-            <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
-            </div>
+        {!user.isAdmin && !loadingData && (
+          <div>
+            <div className={stylesWeather.scoreBoard}>
+              <div className={stylesWeather.scoreField}>
+                <Score
+                  temperature={this.state.temperature}
+                  city={this.state.city}
+                  country={this.state.country}
+                  humidity={this.state.humidity}
+                  description={this.state.description}
+                />
+              </div>
 
-            <div className={stylesWeather.scoreField}>
-            <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
-            </div>
+              <div className={stylesWeather.scoreField}>
+                <Score
+                  temperature={this.state.temperature}
+                  city={this.state.city}
+                  country={this.state.country}
+                  humidity={this.state.humidity}
+                  description={this.state.description}
+                />
+              </div>
 
-            <div className={stylesWeather.scoreField}>
-            <Score
-                temperature={this.state.temperature}
-                city={this.state.city}
-                country={this.state.country}
-                humidity={this.state.humidity}
-                description={this.state.description}
-              />
+              <div className={stylesWeather.scoreField}>
+                <Score
+                  temperature={this.state.temperature}
+                  city={this.state.city}
+                  country={this.state.country}
+                  humidity={this.state.humidity}
+                  description={this.state.description}
+                />
+              </div>
             </div>
           </div>
-  </div>
-)}
-        
-
-
+        )}
 
         <p>
           <div class={stylesWeather.button}>

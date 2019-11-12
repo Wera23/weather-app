@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, TextField } from '@material-ui/core/';
+import { getWeather } from "../../_services";
 
 
-const form = props => (
+const form = () => (
   <div>
-    <form onSubmit={props.getWeather}>
+    <form onSubmit={getWeather}>
       <TextField
         name="city"
         color="primary"

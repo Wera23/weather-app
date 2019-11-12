@@ -4,9 +4,16 @@ import classesWeather from "./WeatherContent.css";
 
 const score3day = props => (
   <div className={classesWeather.score3day}>
-  <Score />
-  <Score />
-  <Score />   
+  
+  <Score
+              temperature={this.state.temperature}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+              error={this.state.error}
+            /> 
+            
   </div>
 );
 
