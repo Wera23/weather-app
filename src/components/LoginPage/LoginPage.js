@@ -40,7 +40,6 @@ class LoginPage extends React.Component {
     this.setState({ submitted: true });
     const { username, password } = this.state;
 
-    // stop here if form is invalid
     if (!(username && password)) {
       return;
     }
@@ -67,7 +66,7 @@ class LoginPage extends React.Component {
             className={classesLogin.card}
           >
             <CardContent>
-              <Typography className={classesLogin.header}>
+              <Typography className={classesLogin.header} variant="h5" style={{marginBottom: 30}}>
                 Zaloguj się
               </Typography>
               <form name="form" onSubmit={this.handleSubmit}>
@@ -78,7 +77,6 @@ class LoginPage extends React.Component {
                   }
                 >
                   <TextField
-                    hintText="User name"
                     label="Username"
                     color="secondary"
                     type="text"
@@ -103,7 +101,6 @@ class LoginPage extends React.Component {
                 >
                   <TextField
                     label="Password"
-                    floatingLabelText="Password"
                     type="password"
                     color="secondary"
                     name="password"
@@ -122,7 +119,7 @@ class LoginPage extends React.Component {
                     variant="contained"
                     disabled={loading}
                     color="secondary"
-                    type="onSubmit"
+                    type="submit"
                   >
                     Login
                   </Button>

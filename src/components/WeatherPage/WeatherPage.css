@@ -1,31 +1,105 @@
-.header{
+.header {
     font-weight: 300;
+    font-size: 64px;
     font-family: 'Lato', serif;
 }
 
-.subheader
-{
+.subheader {
     padding: 10px;
-    margin-bottom: 50px;
     font-weight: 400;
     font-family: 'Lato', serif;
-
 }
 
 .cardOverlay{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     flex-direction: column;
+    position: relative;
+    padding: 50px;
+    z-index: 2;
+}
+
+.pageBackground {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+.pageBackground::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255,255,255,.3);
+}
+
+.pageBackground::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to left, white, transparent);
+}
+
+.clearSkyBackground {
+    background-image: url('../../assets/clear-sky.jpg');
+}
+
+.brokenCloudsBackground {
+    background-image: url('../../assets/broken-clouds.jpg');
+}
+
+.snowBackground {
+    background-image: url('../../assets/snow.jpg');
+}
+
+.mistBackground {
+    background-image: url('../../assets/mist.jpg');
+}
+
+.thunderstormBackground {
+    background-image: url('../../assets/thunderstorm.jpg');
+}
+
+.rainBackground {
+    background-image: url('../../assets/rain.jpg');
+}
+
+.showerRainBackground {
+    background-image: url('../../assets/shower-rain.jpg');
+}
+
+.fewCloudsBackground {
+    background-image: url('../../assets/few-clouds.jpg');
+}
+
+.scatteredClouds {
+    background-image: url('../../assets/scattered-clouds.jpg');
+}
+
+.weatherNow {
+    display: flex;
+    align-items: center;
 }
 
 .scoreBoard{
     display: flex;
     align-content: center;
     justify-content: center;
+    width: calc(100vw - 100px);
 }
-
-
 
 .button{
     display: flex;
@@ -42,4 +116,19 @@
 
 .scoreField{
     margin: 20px;
+    flex: 1;
+}
+
+.scoreField:first-of-type{
+    margin-left: 0;
+}
+
+.scoreField:last-of-type{
+    margin-right: 0;
+}
+
+.usersBoard {
+    position: absolute;
+    top: 50px;
+    left: 50px;
 }

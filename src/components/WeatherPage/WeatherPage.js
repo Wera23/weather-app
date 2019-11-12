@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core/";
+import { Button, CircularProgress } from "@material-ui/core/";
 import { userService } from "../../_services";
 import Score from "../Weather/Score";
 import stylesWeather from "./WeatherPage.css";
@@ -18,6 +18,7 @@ class WeatherPage extends React.Component {
       description: "",
       daysForecast: [],
       todayWeather: [],
+      todayWeatherDescription: "",
       loadingData: false,
       loadingWeather: false
     };
@@ -56,6 +57,7 @@ class WeatherPage extends React.Component {
         console.log(data);
         this.setState({
           todayWeather: data.weather,
+          todayWeatherDescription: data.weather[0].description,
           loadingWeather: false
         });
       })
@@ -72,6 +74,7 @@ class WeatherPage extends React.Component {
     });
 
     userService.getAll().then(users => this.setState({ users }));
+    console.log(this.state.users);
   }
 
   render() {
@@ -80,64 +83,108 @@ class WeatherPage extends React.Component {
       loadingData,
       loadingWeather,
       daysForecast,
-      todayWeather
+      todayWeather,
+      todayWeatherDescription
     } = this.state;
 
     return (
-      <div className={stylesWeather.cardOverlay}>
-        <h1 className={stylesWeather.header}>Hi {user.firstName}!</h1>
-        <p className={stylesWeather.subheader}>
-          Your forecast for the next five days
-        </p>
+      <div
+        className={[
+          stylesWeather.pageBackground,
+          this.changeBackground(todayWeatherDescription)
+        ].join(" ")}
+      >
+        <div className={stylesWeather.cardOverlay}>
+          <h1 className={stylesWeather.header}>Hi {user.firstName} {user.lastName}!</h1>
 
-        <p className={stylesWeather.location}>
-          {user.city} {user.country}
-        </p>
+          {user.isAdmin && !loadingData && (
+            <span className={stylesWeather.usersBoard}>USERS</span>
+          )}
 
-        {user.isAdmin && !loadingData && <span>Jajsjjsjsjsjasjas</span>}
+          {!loadingWeather && (
+            <>
+              {todayWeather.map((item, index) => {
+                return (
+                  <div className={stylesWeather.weatherNow} key={index}>
+                    <img
+                      src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`}
+                      alt={item.description}
+                    />
+                    <span>({item.description})</span>
+                  </div>
+                );
+              })}
+            </>
+          )}
 
-        {!loadingWeather && (
-          <>
-            {todayWeather.map(item => {
-              return (
-                <>
-                  <span>{item.description}</span>
-                </>
-              );
-            })}
-          </>
-        )}
+          <h3 className={stylesWeather.subheader}>
+            Your forecast for the next five days in {user.city}
+          </h3>
 
-        {!loadingData && (
-          <div className={stylesWeather.scoreBoard}>
-            {daysForecast.map(item => {
-              return (
-                <div className={stylesWeather.scoreField}>
-                  <Score
-                    day={moment(item.dt_txt).format("dddd")}
-                    date={moment(item.dt_txt).format("Do YYYY")}
-                    temperature={item.main.temp}
-                    city={user.city}
-                    country={user.country}
-                    humidity={item.main.humidity}
-                    description={item.weather[0].description}
-                    icon={item.weather[0].icon}
-                  />
-                </div>
-              );
-            })}
+          {!loadingData && (
+            <div className={stylesWeather.scoreBoard}>
+              {daysForecast.map((item, index) => {
+                return (
+                  <div className={stylesWeather.scoreField} key={index}>
+                    <Score
+                      day={moment(item.dt_txt).format("dddd")}
+                      date={moment(item.dt_txt).format("Do YYYY")}
+                      temperature={item.main.temp}
+                      city={user.city}
+                      country={user.country}
+                      humidity={item.main.humidity}
+                      description={item.weather[0].description}
+                      icon={item.weather[0].icon}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {loadingData && (
+            <div className={stylesWeather.scoreBoard}>
+              <CircularProgress color="secondary" size={80} />
+            </div>
+          )}
+
+          <div className={stylesWeather.button}>
+            <Button variant="contained" color="secondary">
+              <Link className={stylesWeather.link} to="/login">
+                Logout
+              </Link>
+            </Button>
           </div>
-        )}
-
-        <div class={stylesWeather.button}>
-          <Button variant="contained" color="secondary" type="onSubmit">
-            <Link class={stylesWeather.link} to="/login">
-              Logout
-            </Link>
-          </Button>
         </div>
       </div>
     );
+  }
+
+  changeBackground(weather) {
+    switch (weather) {
+      case "snow":
+        return stylesWeather.snowBackground;
+      case "mist":
+        return stylesWeather.mistBackground;
+      case "clear sky":
+        return stylesWeather.clearSkyBackground;
+      case "few clouds":
+        return stylesWeather.fewCloudsBackground;
+      case "scattered clouds":
+      case "overcast clouds":
+        return stylesWeather.scatteredCloudsBackground;
+      case "broken clouds":
+        return stylesWeather.brokenCloudsBackground;
+      case "shower rain":
+        return stylesWeather.showerRainBackground;
+      case "rain":
+      case "light rain":
+        return stylesWeather.rainBackground;
+      case "thunderstorm":
+        return stylesWeather.thunderstormBackground;
+      default:
+        return;
+    }
   }
 }
 
