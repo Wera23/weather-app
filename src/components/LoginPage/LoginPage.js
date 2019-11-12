@@ -65,57 +65,64 @@ class LoginPage extends React.Component {
           style={{ backgroundColor: "#ECEFF1" }}
           className={classesLogin.card}
         >
-            <CardContent>
-            <Typography className={classesLogin.header}> Zaloguj się </Typography>
-          <form name="form" onSubmit={this.handleSubmit}>
-            <div
-              className={
-                "form-group" + (submitted && !username ? " has-error" : "")
-              }
-            >
-      
-              
-              <TextField 
-              hintText="User name" 
-              color="secondary"
-              type="text"
-                className="form-control"
-                name="username"
-                value={username}
-                onChange={this.handleChange} />
+          <CardContent>
+            <Typography className={classesLogin.header}>
+              {" "}
+              Zaloguj się{" "}
+            </Typography>
+            <form name="form" onSubmit={this.handleSubmit}>
+              <div
+                className={
+                  "form-group" + (submitted && !username ? " has-error" : "")
+                }
+              >
+                <TextField
+                  hintText="User name"
+                  label="Username"
+                  color="secondary"
+                  type="text"
+                  className="form-control"
+                  name="username"
+                  value={username}
+                  onChange={this.handleChange}
+                />
+
+                {submitted && !username && (
+                  <div className="help-block">Username is required</div>
+                )}
+              </div>
+
+              <div
+                className={
+                  "form-group" + (submitted && !password ? " has-error" : "")
+                }
+              >
+               
+                <TextField
+                  label="Password"
+                  floatingLabelText="Password"
+                  type="password"
+                  color="secondary"
+                  name="password"
+                  value={password}
+                  onChange={this.handleChange}
+                />
+
+                {submitted && !password && (
+                  <div className="help-block">Password is required</div>
+                )}
+              </div>
+              <div >
 
 
 
-              {submitted && !username && (
-                <div className="help-block">Username is required</div>
-              )}
-            </div>
+                <Button variant="contained" disabled={loading} color="primary" type="onSubmit"> Login </Button>
 
 
-            <div
-              className={
-                "form-group" + (submitted && !password ? " has-error" : "")
-              }
-            >
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                value={password}
-                onChange={this.handleChange}
-              />
-              {submitted && !password && (
-                <div className="help-block">Password is required</div>
-              )}
-            </div>
-            <div className="form-group">
-              <button className="btn btn-primary" disabled={loading}>
-                Login
-              </button>
-            </div>
-            {error && <div className={"alert alert-danger"}>{error}</div>}
-          </form>
+
+              </div>
+              {error && <div className={"alert alert-danger"}>{error}</div>}
+            </form>
           </CardContent>
         </Card>
       </div>

@@ -80,7 +80,7 @@ class App extends React.Component {
 
           
 
-          <Login option={this.props.option} />
+    {/* <Login option={this.props.option} /> */}
 
           <div className={styles.weatherOverlay}>
             <Form getWeather={this.getWeather} />
