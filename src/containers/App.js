@@ -78,10 +78,7 @@ class App extends React.Component {
             title={this.props.appTitle}
             subtitle={this.props.appSubtitle}/>
 
-          {/*}
-
-          <HomePage />
-          <LoginPage />
+          
 
           <Login option={this.props.option} />
 
@@ -95,7 +92,7 @@ class App extends React.Component {
               description={this.state.description}
               error={this.state.error}
             />
-          </div> */}
+          </div> 
           <Router>
             <div>
               <PrivateRoute exact path="/" component={WeatherPage} />

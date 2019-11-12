@@ -1,0 +1,36 @@
+.loginOverlay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card{
+    padding: 60px 0;
+    width: 30vw;   
+    
+}
+
+.header{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    color: green
+}
+
+.button{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
