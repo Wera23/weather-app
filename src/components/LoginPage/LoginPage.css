@@ -3,7 +3,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+}
+
+.loginBackground {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../assets/login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .card{

@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { username, password, returnUrl } = this.state;
+    const { username, password } = this.state;
 
     // stop here if form is invalid
     if (!(username && password)) {
@@ -60,74 +60,78 @@ class LoginPage extends React.Component {
   render() {
     const { username, password, submitted, loading, error } = this.state;
     return (
-      <div className={classesLogin.loginOverlay}>
-        <Card
-          style={{ backgroundColor: "#fafafa" }}
-          className={classesLogin.card}
-        >
-          <CardContent>
-            <Typography className={classesLogin.header}>
-              {" "}
-              Zaloguj się{" "}
-            </Typography>
-            <form name="form" onSubmit={this.handleSubmit}>
-              <div
-                className={
-                  (classesLogin.input) + (submitted && !username ? " has-error" : "")
-                }
-              >
-                <TextField
-                  hintText="User name"
-                  label="Username"
-                  color="secondary"
-                  type="text"
-                  className="form-control"
-                  name="username"
-                  value={username}
-                  onChange={this.handleChange}
-                />
-
-                {submitted && !username && (
-                  <div className={classesLogin.error}>Username is required</div>
-                )}
-              </div>
-
-              <div
-                className={
-                    (classesLogin.input) + (submitted && !password ? " has-error" : "")
-                }
-              >
-                <TextField
-                  label="Password"
-                  floatingLabelText="Password"
-                  type="password"
-                  color="secondary"
-                  name="password"
-                  value={password}
-                  onChange={this.handleChange}
-                />
-
-                {submitted && !password && (
-                  <div className={classesLogin.error}>Password is required</div>
-                )}
-              </div>
-              <div className={classesLogin.button}>
-                <Button
-                  variant="contained"
-                  disabled={loading}
-                  color="secondary"
-                  type="onSubmit"
+      <div className={classesLogin.loginBackground}>
+        <div className={classesLogin.loginOverlay}>
+          <Card
+            style={{ backgroundColor: "#fafafa" }}
+            className={classesLogin.card}
+          >
+            <CardContent>
+              <Typography className={classesLogin.header}>
+                Zaloguj się
+              </Typography>
+              <form name="form" onSubmit={this.handleSubmit}>
+                <div
+                  className={
+                    classesLogin.input +
+                    (submitted && !username ? " has-error" : "")
+                  }
                 >
-                  Login
-                </Button>
+                  <TextField
+                    hintText="User name"
+                    label="Username"
+                    color="secondary"
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    value={username}
+                    onChange={this.handleChange}
+                  />
 
+                  {submitted && !username && (
+                    <div className={classesLogin.error}>
+                      Username is required
+                    </div>
+                  )}
+                </div>
 
+                <div
+                  className={
+                    classesLogin.input +
+                    (submitted && !password ? " has-error" : "")
+                  }
+                >
+                  <TextField
+                    label="Password"
+                    floatingLabelText="Password"
+                    type="password"
+                    color="secondary"
+                    name="password"
+                    value={password}
+                    onChange={this.handleChange}
+                  />
 
-              </div>
-              {error && <div className={classesLogin.error}>{error}</div>}
-            </form>
-          </CardContent>
-        </Card>
+                  {submitted && !password && (
+                    <div className={classesLogin.error}>
+                      Password is required
+                    </div>
+                  )}
+                </div>
+                <div className={classesLogin.button}>
+                  <Button
+                    variant="contained"
+                    disabled={loading}
+                    color="secondary"
+                    type="onSubmit"
+                  >
+                    Login
+                  </Button>
+                </div>
+                {error && <div className={classesLogin.error}>{error}</div>}
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     );
   }
