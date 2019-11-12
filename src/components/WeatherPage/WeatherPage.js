@@ -63,61 +63,35 @@ class WeatherPage extends React.Component {
           Your forecast for the next three days
         </p>
 
+        <p className={stylesWeather.location}>
+         { user.city } { user.country }
+        </p>
+
         {user.isAdmin && !loadingData && (
-          <div className={stylesWeather.scoreBoard}>
-            {daysForecast.map(item => {
-              return (
-                <div className={stylesWeather.scoreField}>
-                  <Score
-                    day={moment(item.dt_txt).format('dddd')}
-                    date={moment(item.dt_txt).format('Do YYYY')}
-                    temperature={item.main.temp}
-                    city={user.city}
-                    country={user.country}
-                    humidity={item.main.humidity}
-                    description={item.weather[0].description}
-                    icon={item.weather[0].icon}
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <span>Jajsjjsjsjsjasjas</span>
         )}
 
-        {!user.isAdmin && !loadingData && (
-          <div>
-            <div className={stylesWeather.scoreBoard}>
-              <div className={stylesWeather.scoreField}>
-                <Score
-                  temperature={this.state.temperature}
-                  city={this.state.city}
-                  country={this.state.country}
-                  humidity={this.state.humidity}
-                  description={this.state.description}
-                />
-              </div>
+        
 
+        {!loadingData && (
+          <div className={stylesWeather.scoreBoard}>
+          {daysForecast.map(item => {
+            return (
               <div className={stylesWeather.scoreField}>
                 <Score
-                  temperature={this.state.temperature}
-                  city={this.state.city}
-                  country={this.state.country}
-                  humidity={this.state.humidity}
-                  description={this.state.description}
+                  day={moment(item.dt_txt).format('dddd')}
+                  date={moment(item.dt_txt).format('Do YYYY')}
+                  temperature={item.main.temp}
+                  city={user.city}
+                  country={user.country}
+                  humidity={item.main.humidity}
+                  description={item.weather[0].description}
+                  icon={item.weather[0].icon}
                 />
               </div>
-
-              <div className={stylesWeather.scoreField}>
-                <Score
-                  temperature={this.state.temperature}
-                  city={this.state.city}
-                  country={this.state.country}
-                  humidity={this.state.humidity}
-                  description={this.state.description}
-                />
-              </div>
-            </div>
-          </div>
+            );
+          })}
+        </div>
         )}
 
         <p>
