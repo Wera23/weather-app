@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, CircularProgress } from "@material-ui/core/";
 import { userService } from "../../_services";
 import Score from "../Weather/Score";
+import UserManagement from "../UserManagement/UserManagement";
 import stylesWeather from "./WeatherPage.css";
 import moment from "moment";
 
@@ -95,21 +96,32 @@ class WeatherPage extends React.Component {
         ].join(" ")}
       >
         <div className={stylesWeather.cardOverlay}>
-          <h1 className={stylesWeather.header}>Hi {user.firstName} {user.lastName}!</h1>
+          <h1 className={stylesWeather.header}>
+            Hi {user.firstName} {user.lastName}!
+          </h1>
 
           {user.isAdmin && !loadingData && (
-            <span className={stylesWeather.usersBoard}>USERS
-            
-            <ul>
+            <div className={stylesWeather.usersBoard}>
+              USERS
+              <table className={stylesWeather.table}>
+                <thead className={stylesWeather.left}>
+                  <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
 
-             
-            {this.state.users.map((user, index) => (
-              <li key={user.id}>{user.firstName + " " + user.lastName}</li>
-            ))}
-          </ul>
-
-          
-            </span>
+                <ul>
+                  {this.state.users.map((user, index) => (
+                    <UserManagement
+                      mgname={user.firstName}
+                      mgusername={user.lastName}
+                    />
+                  ))}
+                </ul>
+              </table>
+            </div>
           )}
 
           {!loadingWeather && (
