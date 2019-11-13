@@ -9,8 +9,7 @@ const userManagement = props => {
             <td >{props.mgname} </td>
             <td>{props.mgusername}</td>
             <td>
-              <button className="button muted-button">Edit</button>
-              <button className="button muted-button">Delete</button>
+              <button onClick={props.click} >Delete</button>
             </td>
           </tr>
         </tbody>

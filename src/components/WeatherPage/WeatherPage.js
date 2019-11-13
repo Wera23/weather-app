@@ -78,6 +78,8 @@ class WeatherPage extends React.Component {
     console.log(this.state.users);
   }
 
+  
+
   render() {
     const {
       user,
@@ -87,6 +89,8 @@ class WeatherPage extends React.Component {
       todayWeather,
       todayWeatherDescription
     } = this.state;
+
+   
 
     return (
       <div
@@ -113,12 +117,15 @@ class WeatherPage extends React.Component {
                 </thead>
 
                 <ul>
-                  {this.state.users.map((user, index) => (
-                    <UserManagement
+                  {this.state.users.map((user, index) => {
+                    return (
+                      <UserManagement
                       mgname={user.firstName}
                       mgusername={user.lastName}
                     />
-                  ))}
+
+                    )
+                  } )}
                 </ul>
               </table>
             </div>
