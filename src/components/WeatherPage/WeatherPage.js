@@ -98,7 +98,18 @@ class WeatherPage extends React.Component {
           <h1 className={stylesWeather.header}>Hi {user.firstName} {user.lastName}!</h1>
 
           {user.isAdmin && !loadingData && (
-            <span className={stylesWeather.usersBoard}>USERS</span>
+            <span className={stylesWeather.usersBoard}>USERS
+            
+            <ul>
+
+             
+            {this.state.users.map((user, index) => (
+              <li key={user.id}>{user.firstName + " " + user.lastName}</li>
+            ))}
+          </ul>
+
+          
+            </span>
           )}
 
           {!loadingWeather && (
