@@ -5,7 +5,6 @@ import { userService } from "../../_services";
 import Score from "../Weather/Score";
 import UserManagementDelete from "../UserManagement/Delete";
 import UserManagementAdd from "../UserManagement/Add";
-import Dialog from '../UserManagement/Dialog'
 //import UserManagement from '../UserManagement/HeaderUsers'
 
 import stylesWeather from "./WeatherPage.css";
@@ -30,9 +29,15 @@ class WeatherPage extends React.Component {
      
 
     };
-
-
   }
+
+  deleteUser = (index) => {
+    let users = [...this.state.users];
+    console.log(users);
+    users.splice(index, 1);
+    this.setState({ users: users });
+    return;   
+  };
 
   addItems = (e) => {
     if (this._inputElement.value !== "") {
@@ -56,13 +61,14 @@ class WeatherPage extends React.Component {
 }
 
 
-
-  delete = index => {
-    let users = [...this.state.users];
-    users.splice(index, 1);
-    this.setState({ users: users });
-    localStorage.removeItem("user");
-  };
+/*delete = index => {
+  let users = [...this.state.users];
+  users.splice(index, 1);
+  this.setState({ users: users });
+  localStorage.removeItem("user");
+};
+*/
+ 
 
   componentDidMount() {
     const userData = JSON.parse(localStorage.getItem("user"));
@@ -97,7 +103,7 @@ class WeatherPage extends React.Component {
         console.log(data);
         this.setState({
           todayWeather: data.weather,
-          todayWeatherDescription: data.weather[0].description,
+          todayWeatherDescription: data.weather[0].main,
           loadingWeather: false
         });
       })
@@ -150,7 +156,8 @@ class WeatherPage extends React.Component {
                         key={index}
                         mgname={user.firstName}
                         mgusername={user.lastName}
-                        click={this.delete.bind(this, user)}
+                        deleteUser={() => this.deleteUser(index)}
+                        
                       />
                     );
                   })}
@@ -160,7 +167,7 @@ class WeatherPage extends React.Component {
                   />
                 </ul>
 
-                <Dialog />
+                
               </Table>
               </Paper>
 
@@ -228,23 +235,17 @@ class WeatherPage extends React.Component {
 
   changeBackground(weather) {
     switch (weather) {
-      case "snow":
+      case "Snow":
         return stylesWeather.snowBackground;
       case "mist":
         return stylesWeather.mistBackground;
-      case "clear sky":
+      case "Clear":
         return stylesWeather.clearSkyBackground;
-      case "few clouds":
-        return stylesWeather.fewCloudsBackground;
-      case "scattered clouds":
-      case "overcast clouds":
-        return stylesWeather.scatteredCloudsBackground;
-      case "broken clouds":
+      case "Clouds":
         return stylesWeather.brokenCloudsBackground;
-      case "shower rain":
+      case "Drizzle":
         return stylesWeather.showerRainBackground;
-      case "rain":
-      case "light rain":
+      case "Rain":
         return stylesWeather.rainBackground;
       case "thunderstorm":
         return stylesWeather.thunderstormBackground;

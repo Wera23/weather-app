@@ -1,6 +1,8 @@
 import React from "react";
 //import stylesManagement from "./UserManagement.css";
-import { Button, TableBody, TableCell, TableRow } from "@material-ui/core/";
+import {TableBody, TableCell, TableRow } from "@material-ui/core/";
+import Dialog from './Dialog'
+
 
 const userManagementDelete = props => {
   return (
@@ -10,9 +12,7 @@ const userManagementDelete = props => {
         <TableCell align="left">{props.mgname}</TableCell>
         <TableCell align="left">{props.mgusername}</TableCell>
         <TableCell align="right" >
-        <Button variant="outlined" size="small" color="secondary" type="submit" onClick={props.click}>
-          Delete
-        </Button>
+        <Dialog deleteUser={() => props.deleteUser(props.index)} />
       </TableCell>
       </TableRow>
     

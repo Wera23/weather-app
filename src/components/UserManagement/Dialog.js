@@ -1,8 +1,15 @@
-import React from 'react';
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core/';
+import React from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText
+} from "@material-ui/core/";
+//import ButtonDelete from "./ButtonDelete";
+//import { deleteUser } from "../../_services";
 
-
-export default function AlertDialog() {
+export default function AlertDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -13,9 +20,20 @@ export default function AlertDialog() {
     setOpen(false);
   };
 
+  const deleteUser = () => {
+      handleClose(false);
+      props.deleteUser();
+  }
+
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        size="small"
+        color="primary"
+        small
+        onClick={handleClickOpen}
+      >
         remove
       </Button>
       <Dialog
@@ -26,14 +44,19 @@ export default function AlertDialog() {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          Are you sure you want to delete this user
+            Are you sure you want to delete this user
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-           No
+            No
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button
+            variant="outlined"
+            color="secondary"
+            type="submit"
+            onClick={deleteUser}
+          >
             Yes
           </Button>
         </DialogActions>
