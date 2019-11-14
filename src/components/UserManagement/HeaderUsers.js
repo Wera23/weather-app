@@ -11,9 +11,9 @@ const UserManagement = () => {
     
         <TableHead>
           <TableRow>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Username</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Username</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
        

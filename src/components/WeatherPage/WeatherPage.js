@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, CircularProgress } from "@material-ui/core/";
+import { Button, CircularProgress, Table, Paper } from "@material-ui/core/";
 import { userService } from "../../_services";
 import Score from "../Weather/Score";
 import UserManagementDelete from "../UserManagement/Delete";
 import UserManagementAdd from "../UserManagement/Add";
-import UserManagement from '../UserManagement/HeaderUsers'
+import Dialog from '../UserManagement/Dialog'
+//import UserManagement from '../UserManagement/HeaderUsers'
 
 import stylesWeather from "./WeatherPage.css";
 import moment from "moment";
@@ -140,11 +141,8 @@ class WeatherPage extends React.Component {
 
           {user.isAdmin && !loadingData && (
             <div className={stylesWeather.usersBoard}>
-              USERS
-              <table>
-              
-              <UserManagement />
-
+              <Paper>
+              <Table size="small" aria-label="a dense table">              
                 <ul>
                   {this.state.users.map((user, index) => {
                     return (
@@ -156,14 +154,16 @@ class WeatherPage extends React.Component {
                       />
                     );
                   })}
-
                   <UserManagementAdd
                     addItem={this.addItem}
-                    actions={(a) => this._inputElement = a}
-                  
+                    actions={(a) => this._inputElement = a}                  
                   />
                 </ul>
-              </table>
+
+                <Dialog />
+              </Table>
+              </Paper>
+
             </div>
           )}
 
