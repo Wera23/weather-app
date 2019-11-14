@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { Button, CircularProgress } from "@material-ui/core/";
 import { userService } from "../../_services";
 import Score from "../Weather/Score";
-import UserManagement from "../UserManagement/UserManagement";
+import UserManagementDelete from "../UserManagement/Delete";
+import UserManagementAdd from "../UserManagement/Add";
+import UserManagement from '../UserManagement/HeaderUsers'
+
 import stylesWeather from "./WeatherPage.css";
 import moment from "moment";
 
@@ -21,18 +24,45 @@ class WeatherPage extends React.Component {
       todayWeather: [],
       todayWeatherDescription: "",
       loadingData: false,
-      loadingWeather: false
+      loadingWeather: false,
+      newusers: []
+     
+
     };
+
+
   }
 
-   delete = (user, index) => {
-    alert('Dziala')
-    let users = [...this.state.users]
+  addItems = (e) => {
+    if (this._inputElement.value !== "") {
+      const newItem = {
+        user: this._inputElement.value,
+        index: Date.now()
+      };
+
+      this.setState((usersAdd) => {
+        return {
+          newusers: usersAdd.users.concat(newItem)
+        }
+      }
+
+      )
+
+  }
+
+  this._inputElement.value = "";
+  console.log(this.state.newusers)
+}
+
+
+
+  delete = index => {
+    let users = [...this.state.users];
     users.splice(index, 1);
-    this.setState({users: users})
-  }
+    this.setState({ users: users });
+    localStorage.removeItem("user");
+  };
 
-  
   componentDidMount() {
     const userData = JSON.parse(localStorage.getItem("user"));
     const city = userData.city;
@@ -84,16 +114,9 @@ class WeatherPage extends React.Component {
 
     userService.getAll().then(users => this.setState({ users }));
     console.log(this.state.users);
-
-   
   }
 
-
-
-
   render() {
-    
-
     const {
       user,
       loadingData,
@@ -118,29 +141,27 @@ class WeatherPage extends React.Component {
           {user.isAdmin && !loadingData && (
             <div className={stylesWeather.usersBoard}>
               USERS
-              <table className={stylesWeather.table}>
-                <thead className={stylesWeather.left}>
-                  <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
+              <table>
+              
+              <UserManagement />
 
                 <ul>
                   {this.state.users.map((user, index) => {
-                    
                     return (
-      
-                    
-                    <UserManagement
-                      key={index}
-                      mgname={user.firstName}
-                      mgusername={user.lastName}
-                      click={this.delete.bind(this, user)}
-                    />
-                    )})}
-                 
+                      <UserManagementDelete
+                        key={index}
+                        mgname={user.firstName}
+                        mgusername={user.lastName}
+                        click={this.delete.bind(this, user)}
+                      />
+                    );
+                  })}
+
+                  <UserManagementAdd
+                    addItem={this.addItem}
+                    actions={(a) => this._inputElement = a}
+                  
+                  />
                 </ul>
               </table>
             </div>
