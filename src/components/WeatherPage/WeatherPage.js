@@ -25,6 +25,14 @@ class WeatherPage extends React.Component {
     };
   }
 
+   delete = (user, index) => {
+    alert('Dziala')
+    let users = [...this.state.users]
+    users.splice(index, 1);
+    this.setState({users: users})
+  }
+
+  
   componentDidMount() {
     const userData = JSON.parse(localStorage.getItem("user"));
     const city = userData.city;
@@ -76,9 +84,16 @@ class WeatherPage extends React.Component {
 
     userService.getAll().then(users => this.setState({ users }));
     console.log(this.state.users);
+
+   
   }
 
+
+
+
   render() {
+    
+
     const {
       user,
       loadingData,
@@ -113,13 +128,18 @@ class WeatherPage extends React.Component {
                 </thead>
 
                 <ul>
-                  {this.state.users.map((user, index) => (
+                  {this.state.users.map((user, index) => {
+                    
+                    return (
+      
+                    
                     <UserManagement
                       key={index}
                       mgname={user.firstName}
                       mgusername={user.lastName}
+                      click={this.delete.bind(this, user)}
                     />
-                  ))}
+                    )})}
                  
                 </ul>
               </table>
