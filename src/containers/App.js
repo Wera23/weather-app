@@ -4,7 +4,6 @@ import "../containers/App.css";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { WeatherPage } from "../components/WeatherPage";
-
 import styles from "../containers/App.css";
 import { LoginPage } from "../components/LoginPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -35,13 +34,12 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <MuiThemeProvider theme={theme}>
-          <Router>
-            <PrivateRoute exact path="/" component={WeatherPage} />
-            <Route path="/login" component={LoginPage} />
-          </Router>
+            <Router>
+              <PrivateRoute exact path="/" component={WeatherPage} />
+              <Route path="/login" component={LoginPage} />
+            </Router>
         </MuiThemeProvider>
       </div>
-      
     );
   }
 }

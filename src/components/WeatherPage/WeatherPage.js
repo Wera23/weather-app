@@ -129,6 +129,7 @@ class WeatherPage extends React.Component {
           this.changeBackground(todayWeatherDescription)
         ].join(" ")}
       >
+        <Grid wrap="wrap">
         <div className={stylesWeather.cardOverlay}>
           <h1 className={stylesWeather.header}>
             Hi {user.firstName} {user.lastName}!
@@ -173,16 +174,17 @@ class WeatherPage extends React.Component {
             </>
           )}
 
-          <h3 className={stylesWeather.subheader}>
+          
+          <Grid wrap="wrap"><h3 className={stylesWeather.subheader}>
             Your forecast for the next five days in {user.city}
-          </h3>
+          </h3> </Grid>
 
           {!loadingData && (
             <div className={stylesWeather.scoreBoard}>
               {daysForecast.map((item, index) => {
                 return (
                   <div className={stylesWeather.scoreField} key={index}>
-                    <Grid wrap="wrap" xs="12" sm="12" spacing="2">
+                    <Grid wrap="wrap" xs="12" sm="12" >
                       <Score
                         day={moment(item.dt_txt).format("dddd")}
                         date={moment(item.dt_txt).format("Do YYYY")}
@@ -214,7 +216,9 @@ class WeatherPage extends React.Component {
             </Button>
           </div>
         </div>
+        </Grid>
       </div>
+
     );
   }
 
