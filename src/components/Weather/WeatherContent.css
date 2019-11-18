@@ -1,9 +1,6 @@
 .score{
-    display: flex;           
-}
-
-.score3day{
-    display: flex;
+    display: flex; 
+    flex-wrap: wrap;          
 }
 
 .header{
@@ -14,6 +11,9 @@
 
 .card{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .cardText{

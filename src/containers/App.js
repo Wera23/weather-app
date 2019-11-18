@@ -8,7 +8,6 @@ import { WeatherPage } from "../components/WeatherPage";
 import styles from "../containers/App.css";
 import { LoginPage } from "../components/LoginPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import { PrivateRoute } from "../components/PrivateRoute";
 
 const theme = createMuiTheme({
@@ -42,6 +41,7 @@ class App extends React.Component {
           </Router>
         </MuiThemeProvider>
       </div>
+      
     );
   }
 }

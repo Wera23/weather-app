@@ -57,8 +57,8 @@
     background-image: url('../../assets/clear-sky.jpg');
 }
 
-.brokenCloudsBackground {
-    background-image: url('../../assets/broken-clouds.jpg');
+.cloudsBackground {
+    background-image: url('../../assets/clouds.jpg');
 }
 
 .snowBackground {
@@ -69,6 +69,14 @@
     background-image: url('../../assets/mist.jpg');
 }
 
+.hazeBackground {
+    background-image: url('../../assets/haze.jpg');
+}
+
+.dustBackground {
+    background-image: url('../../assets/dust.jpg');
+}
+
 .thunderstormBackground {
     background-image: url('../../assets/thunderstorm.jpg');
 }
@@ -77,17 +85,14 @@
     background-image: url('../../assets/rain.jpg');
 }
 
-.showerRainBackground {
-    background-image: url('../../assets/shower-rain.jpg');
+.smokeBackground {
+    background-image: url('../../assets/smoke.jpg');
 }
 
-.fewCloudsBackground {
-    background-image: url('../../assets/few-clouds.jpg');
+.drizzleBackground {
+    background-image: url('../../assets/drizzle.jpg');
 }
 
-.scatteredClouds {
-    background-image: url('../../assets/scattered-clouds.jpg');
-}
 
 .weatherNow {
     display: flex;

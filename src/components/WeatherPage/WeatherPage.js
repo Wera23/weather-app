@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, CircularProgress, Table, Paper } from "@material-ui/core/";
+import {
+  Button,
+  CircularProgress,
+  Table,
+  Paper,
+  Grid
+} from "@material-ui/core/";
 import { userService } from "../../_services";
 import Score from "../Weather/Score";
 import UserManagementDelete from "../UserManagement/Delete";
-import UserManagementAdd from "../UserManagement/Add";
-//import UserManagement from '../UserManagement/HeaderUsers'
 
 import stylesWeather from "./WeatherPage.css";
 import moment from "moment";
@@ -26,49 +30,34 @@ class WeatherPage extends React.Component {
       loadingData: false,
       loadingWeather: false,
       newusers: []
-     
-
     };
   }
 
-  deleteUser = (index) => {
+  deleteUser = index => {
     let users = [...this.state.users];
     console.log(users);
     users.splice(index, 1);
     this.setState({ users: users });
-    return;   
+    return;
   };
 
-  addItems = (e) => {
+  addItems = e => {
     if (this._inputElement.value !== "") {
       const newItem = {
         user: this._inputElement.value,
         index: Date.now()
       };
 
-      this.setState((usersAdd) => {
+      this.setState(usersAdd => {
         return {
           newusers: usersAdd.users.concat(newItem)
-        }
-      }
+        };
+      });
+    }
 
-      )
-
-  }
-
-  this._inputElement.value = "";
-  console.log(this.state.newusers)
-}
-
-
-/*delete = index => {
-  let users = [...this.state.users];
-  users.splice(index, 1);
-  this.setState({ users: users });
-  localStorage.removeItem("user");
-};
-*/
- 
+    this._inputElement.value = "";
+    console.log(this.state.newusers);
+  };
 
   componentDidMount() {
     const userData = JSON.parse(localStorage.getItem("user"));
@@ -147,30 +136,24 @@ class WeatherPage extends React.Component {
 
           {user.isAdmin && !loadingData && (
             <div className={stylesWeather.usersBoard}>
-              <Paper>
-              <Table size="small" aria-label="a dense table">              
-                <ul>
-                  {this.state.users.map((user, index) => {
-                    return (
-                      <UserManagementDelete
-                        key={index}
-                        mgname={user.firstName}
-                        mgusername={user.lastName}
-                        deleteUser={() => this.deleteUser(index)}
-                        
-                      />
-                    );
-                  })}
-                  <UserManagementAdd
-                    addItem={this.addItem}
-                    actions={(a) => this._inputElement = a}                  
-                  />
-                </ul>
-
-                
-              </Table>
-              </Paper>
-
+              <Grid>
+                <Paper>
+                  <Table size="small" aria-label="a dense table">
+                    <ul>
+                      {this.state.users.map((user, index) => {
+                        return (
+                          <UserManagementDelete
+                            key={index}
+                            mgname={user.firstName}
+                            mgusername={user.lastName}
+                            deleteUser={() => this.deleteUser(index)}
+                          />
+                        );
+                      })}
+                    </ul>
+                  </Table>
+                </Paper>
+              </Grid>
             </div>
           )}
 
@@ -199,16 +182,18 @@ class WeatherPage extends React.Component {
               {daysForecast.map((item, index) => {
                 return (
                   <div className={stylesWeather.scoreField} key={index}>
-                    <Score
-                      day={moment(item.dt_txt).format("dddd")}
-                      date={moment(item.dt_txt).format("Do YYYY")}
-                      temperature={item.main.temp}
-                      city={user.city}
-                      country={user.country}
-                      humidity={item.main.humidity}
-                      description={item.weather[0].description}
-                      icon={item.weather[0].icon}
-                    />
+                    <Grid wrap="wrap" xs="12" sm="12" spacing="2">
+                      <Score
+                        day={moment(item.dt_txt).format("dddd")}
+                        date={moment(item.dt_txt).format("Do YYYY")}
+                        temperature={item.main.temp}
+                        city={user.city}
+                        country={user.country}
+                        humidity={item.main.humidity}
+                        description={item.weather[0].description}
+                        icon={item.weather[0].icon}
+                      />
+                    </Grid>
                   </div>
                 );
               })}
@@ -242,13 +227,22 @@ class WeatherPage extends React.Component {
       case "Clear":
         return stylesWeather.clearSkyBackground;
       case "Clouds":
-        return stylesWeather.brokenCloudsBackground;
+        return stylesWeather.cloudsBackground;
       case "Drizzle":
-        return stylesWeather.showerRainBackground;
+        return stylesWeather.drizzleBackground;
       case "Rain":
         return stylesWeather.rainBackground;
-      case "thunderstorm":
+      case "Thunderstorm":
         return stylesWeather.thunderstormBackground;
+      case "Dust":
+        return stylesWeather.dustBackground;
+      case "Fog":
+        return stylesWeather.fogBackground;
+      case "Haze":
+        return stylesWeather.hazeBackground;
+      case "Smoke":
+        return stylesWeather.smokeBackground;
+
       default:
         return;
     }

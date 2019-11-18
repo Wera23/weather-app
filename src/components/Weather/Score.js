@@ -1,12 +1,13 @@
 import React from "react";
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import classesWeather from "./WeatherContent.css";
 
 const score = props => (
   <>
     {props.city && props.country && (
-      <div className={classesWeather.score}>
-        <Card className={classesWeather.card}>
+      
+        <Grid wrap ms="12" mx="12"> 
+        <Card className={classesWeather.card}>         
           <CardContent>
             <Typography className={classesWeather.header} variant="h5">
               {props.day}
@@ -44,7 +45,7 @@ const score = props => (
             )}
           </CardContent>
         </Card>
-      </div>
+       </Grid>
     )}
   </>
 );
